@@ -19,7 +19,8 @@ body {
     -6px -6px 10px rgba(255,255,255,0.7);
     margin: 10px;
     position: relative;
-    transition: width 1.5s;
+    transition: width 0.8s ease;
+    overflow: hidden; /* Prevents hidden elements from spilling out */
 }
 
 .magnifier {
@@ -27,14 +28,14 @@ body {
     cursor: pointer;
     position: absolute;
     left: 20px;
+    transition: transform 0.3s ease;
 }
 
 .mic-icon{
     width: 30px;
     position: absolute;
     right: 10px;
-    transition: width 0.4s;
-    transition-delay: 1s;
+    transition: width 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
 }
 
 .input {
@@ -44,18 +45,29 @@ body {
     width: 100%;
     outline: none;
     color: rgb(100, 100, 100);
-    transition: width 1s;
-    transition-delay: 0.3s;
+    transition: width 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
 }
 
-.active.search-bar-container {
+/* When active (Collapsed) */
+.search-bar-container.active {
     width: 50px;
 }
 
-.active .input {
+/* Fade + Shrink Input */
+.search-bar-container.active .input {
     width: 0;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
-.active .mic-icon {
+/*Fade + Shrink Mic Icon*/
+.search-bar-container.active .mic-icon {
     width: 0;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Optional  animate magnifier a bit when clicked*/
+.search-bar-container.active .magnifier {
+    transform: scale(1.3);
 }
